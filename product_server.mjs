@@ -85,7 +85,7 @@ app.listen(PORT, () => {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-let dbURI = 'mongodb+srv://irfan:irfan@cluster0.jqfzaar.mongodb.net/ProductDataBase?retryWrites=true&w=majority';
+let dbURI = 'mongodb+srv://abc:abc@cluster0.jqfzaar.mongodb.net/productDataBase?retryWrites=true&w=majority';
 mongoose.connect(dbURI);
 
 ////////////////mongodb connected disconnected events///////////////////////////////////////////////
