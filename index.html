@@ -12,7 +12,7 @@
 <body>
     <h1>Add a Product</h1>
 
-    <form onsubmit="createproduct(); return false ">
+    <form onsubmit="createProduct(); return false ">
 
         <label for="productName">Product Name</label>
         <input type="text" id="productName" required>
@@ -22,16 +22,16 @@
         <input type="number" id="productPrice" required>
         <br>
 
-        <label for="currencyCode"> CurrencyCode</label>
+        <label for="currencyCode">Currency Code</label>
         <input type="text" id="currencyCode" required>
         <br>
 
-        <label for="numberOfSale"> Number Of Sale</label>
+        <label for="numberOfSale">Number Of Sale</label>
         <input type="number" id="numberOfSale" required>
         <br>
 
         <label for="rating">Product Rating</label>
-        <input type="number" min="0" max="5" required id="rating" required>
+        <input type="number" min="0" max="5" id="rating" required>
         <br>
 
         <label for="isFreeShipping">Free Shipping</label>
@@ -41,20 +41,18 @@
         </select>
         <br>
 
-        <label for="shopName">Shop name</label>
+        <label for="shopName">shop Name</label>
         <input type="text" id="shopName" required>
         <br>
-        <button type="submit"> Add In DataBase</button>
+
+        <input type="submit" value="Add in database">
     </form>
 
     <p id="message"></p>
 
 
     <script>
-
-
-        function createproduct() {
-
+        function createProduct() {
 
             let productName = document.querySelector("#productName").value;
             let productPrice = document.querySelector("#productPrice").value;
@@ -64,6 +62,7 @@
             let isFreeShipping = document.querySelector("#isFreeShipping").value;
             let shopName = document.querySelector("#shopName").value;
 
+
             axios.post('http://localhost:3000/product', {
                 productName,
                 productPrice,
@@ -72,18 +71,18 @@
                 rating,
                 isFreeShipping,
                 shopName,
-
-
             })
-                .then(function (reponse) {
+                .then(function (response) {
                     console.log(response.data);
-                    document.querySelector("#message").innerHTML = reponse.data.message;
+                    document.querySelector("#message").innerHTML = response.data.message;
                 })
                 .catch(function (error) {
                     console.log(error.response.data);
-                    document.querySelector("#message").innerHTML = error.reponse.data.message;
-                })
+                    document.querySelector("#message").innerHTML = error.response.data.message;
+                });
         }
+
+
 
     </script>
 
