@@ -82,8 +82,9 @@ app.post("/product", async (req, res) => {
 
 //  deleted code//
 
-app.delete("/product:id", async (req, res) => {
-    product.deletebyid(req.body.id);
+app.delete("/product/:id", async (req, res) => {
+    let result = await productModel.deleteOne()
+    // product.deletebyid(req.body.id);
 
 })
 
