@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Ali Express Page</title>
+</head>
+
+<body>
+    <h1>Ali Express</h1>
+
+    <div>
+        <a href="./index.html">Home</a>
+        <a href="./products.html">All Products</a>
+    </div>
+    <br><br>
+
+    <div id="productsList">
+
+
+
+    </div>
+
+    <button onclick="deletedProduct()">Delete Product</button>
+
+    <script>
+
+        async function getAllProducts() {
+
+
+
+            try {
+                const response = await axios.get('http://localhost:3000/products');
+                console.log(response.data.data);
+
+                let productsList = document.querySelector("#productsList")
+
+
+
+                response.data.data.map(eachProduct => {
+
+                    productsList.innerHTML +=
+                        `<div>
+                        <img src="./img/Airpord.jpg_.webp" alt="">
+
+                            <p> ${eachProduct.productName} </p>
+                            <p>
+                        <span> ${eachProduct.currencyCode} </span>
+                         <span> ${eachProduct.productPrice} </span>
+                         </p>
+                            <p> ${eachProduct.numberOfSale || 0} Sold</p>
+                            <p> ${(eachProduct.isFreeShipping) ? "Free Shipping" : "No free shipping"} </p>
+                            <p>${eachProduct.shopName}</p>
+
+                    </div>`
+                })
+
+            } catch (error) {
+                console.error(error);
+            }
+
+        }
+        getAllProducts();
+
+    </script>
+
+
+
+
+</body>
+
+</html>

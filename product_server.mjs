@@ -18,10 +18,11 @@ let app = express();
 app.use(express.json());
 app.use(cors());
 
+
 app.get("/products", async (req, res) => {
     let result = await productModel
-        .find({})
-        .exec()
+        .find({}).exec()
+
         .catch((e) => {
             console.log("error in db: ", e);
             res.status(500).send({ message: "error in getting all products" });
@@ -77,6 +78,17 @@ app.post("/product", async (req, res) => {
     console.log("result: ", result);
     res.send({ message: "product is added in database" });
 });
+
+
+//  deleted code//
+
+app.delete("/product:id", async (req, res) => {
+    product.deletebyid(req.body.id);
+
+})
+
+
+
 
 let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
