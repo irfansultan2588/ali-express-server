@@ -27,61 +27,8 @@
 
     <!-- <button onclick="deletedProduct()">Delete Product</button> -->
 
-    <script>
 
-        async function deletedProduct(_id) {
-
-            try {
-                const response = await axios.delete(`http://localhost:3000/products/${_id}`);
-                console.log(response.data.data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        async function getAllProducts() {
-
-
-
-            try {
-                const response = await axios.get('http://localhost:3000/products');
-                console.log(response.data.data);
-
-                let productsList = document.querySelector("#productsList")
-
-
-
-                response.data.data.map(eachProduct => {
-                    console.log("eachProduct", eachProduct);
-                    productsList.innerHTML +=
-                        `<div>
-                        <img src="./img/Airpord.jpg_.webp" alt="">
-
-                            <p> ${eachProduct.productName} </p>
-                            <p>
-                        <span> ${eachProduct.currencyCode} </span>
-                         <span> ${eachProduct.productPrice} </span>
-                         </p>
-                            <p> ${eachProduct.numberOfSale || 0} Sold</p>
-                            <p> ${(eachProduct.isFreeShipping) ? "Free Shipping" : "No free shipping"} </p>
-                            <p>${eachProduct.shopName}</p>
-                            <button onclick="${deletedProduct(eachProduct._id)}">Delete Product</button>
-
-                    </div>`
-                })
-
-            } catch (error) {
-                console.error(error);
-            }
-
-        }
-        getAllProducts();
-
-
-    </script>
-
-
-
+    <script src="index.js"></script>
 
 </body>
 
