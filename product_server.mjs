@@ -88,13 +88,19 @@ app.delete("/product/:id", async (req, res) => {
 
     try {
         const result = await productModel.findByIdAndDelete(_id);
-        console.log("deleted course:", result);
+        console.log("deleted product:", result);
         res.send({
-            message: "delete"
+            message: "deleted"
 
         });
         return;
+
+
     } catch (err) {
+        console.log(err)
+        res.status(500).send({
+            message: "db error "
+        })
 
     }
     // let result = await productModel.deleteOne()

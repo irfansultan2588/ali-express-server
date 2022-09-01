@@ -6,6 +6,7 @@
 
 #productsList {
     display: flex;
+    flex-wrap: wrap;
 }
 
 #productsList>div {

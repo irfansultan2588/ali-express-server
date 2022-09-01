@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <h1>Ali Express</h1>
+    <h1>A pp Express</h1>
 
     <div>
         <a href="./index.html">Home</a>
@@ -25,10 +25,74 @@
 
     </div>
 
-    <!-- <button onclick="deletedProduct()">Delete Product</button> -->
 
 
-    <script src="index.js"></script>
+    <script>
+
+        let baseUrl;
+
+        if (window.location.href.indexOf("https") === -1) {
+            baseUrl = "http://localhost:3000";
+
+        } else {
+            baseUrl = "https://ali-express-server.herokuapp.com";
+        }
+
+        async function getAllProducts() {
+
+
+
+            try {
+                const response = await axios.get(baseUrl + "/products");
+                console.log(response.data.data);
+
+                let productsList = document.querySelector("#productsList")
+                productsList.innerHTML = "";
+
+
+                response.data.data.map(eachProduct => {
+                    console.log("eachProduct", eachProduct);
+                    productsList.innerHTML +=
+                        `<div>
+                    <img src="./img/Airpord.jpg_.webp" alt="">
+
+                        <p> ${eachProduct.productName} </p>
+                        <p>
+                    <span> ${eachProduct.currencyCode} </span>
+                     <span> ${eachProduct.productPrice} </span>
+                     </p>
+                        <p> ${eachProduct.numberOfSale || 0} Sold</p>
+                        <p> ${(eachProduct.isFreeShipping) ? "Free Shipping" : "No free shipping"} </p>
+                        <p>${eachProduct.shopName}</p>
+                        <button onclick="deleteProduct('${eachProduct._id}')">Delete</button>
+
+                </div>`
+                })
+
+            } catch (error) {
+                console.error(error);
+            }
+
+        }
+        getAllProducts();
+
+
+        async function deleteProduct(id) {
+            console.log("productId:", id);
+
+            let response = await axios.delete(`${baseUrl}/product/${id}`)
+                .catch(e => {
+                    console.log("error:", e);
+                    return;
+                });
+            if (response) {
+                console.log('delete');
+                getAllProducts();
+            }
+        }
+
+
+    </script>
 
 </body>
 
