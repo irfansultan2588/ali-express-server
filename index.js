@@ -65,7 +65,7 @@ async function getAllProducts() {
 
 
     try {
-        const response = await axios.get('http://localhost:3000/products');
+        const response = await axios.get(baseUrl + "/products");
         console.log(response.data.data);
 
         let productsList = document.querySelector("#productsList")
@@ -76,19 +76,19 @@ async function getAllProducts() {
             console.log("eachProduct", eachProduct);
             productsList.innerHTML +=
                 `<div>
-                <img src="./img/Airpord.jpg_.webp" alt="">
+                        <img src="./img/Airpord.jpg_.webp" alt="">
 
-                    <p> ${eachProduct.productName} </p>
-                    <p>
-                <span> ${eachProduct.currencyCode} </span>
-                 <span> ${eachProduct.productPrice} </span>
-                 </p>
-                    <p> ${eachProduct.numberOfSale || 0} Sold</p>
-                    <p> ${(eachProduct.isFreeShipping) ? "Free Shipping" : "No free shipping"} </p>
-                    <p>${eachProduct.shopName}</p>
-                    <button onclick="${deletedProduct(eachProduct._id)}">Delete Product</button>
+                            <p> ${eachProduct.productName} </p>
+                            <p>
+                        <span> ${eachProduct.currencyCode} </span>
+                         <span> ${eachProduct.productPrice} </span>
+                         </p>
+                            <p> ${eachProduct.numberOfSale || 0} Sold</p>
+                            <p> ${(eachProduct.isFreeShipping) ? "Free Shipping" : "No free shipping"} </p>
+                            <p>${eachProduct.shopName}</p>
+                            <button onclick="${deletedProduct(eachProduct._id)}">Delete Product</button>
 
-            </div>`
+                    </div>`
         })
 
     } catch (error) {
