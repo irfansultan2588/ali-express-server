@@ -83,7 +83,21 @@ app.post("/product", async (req, res) => {
 //  deleted code//
 
 app.delete("/product/:id", async (req, res) => {
-    let result = await productModel.deleteOne()
+
+    let _id = req.params.id;
+
+    try {
+        const result = await productModel.findByIdAndDelete(_id);
+        console.log("deleted course:", result);
+        res.send({
+            message: "delete"
+
+        });
+        return;
+    } catch (err) {
+
+    }
+    // let result = await productModel.deleteOne()
     // product.deletebyid(req.body.id);
 
 })
